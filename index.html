@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +15,15 @@
 }
 
 body{
-    background:#000814; /* Deep dark background */
+    background:#0a0f1c;
     color:#e6edf3;
     overflow-x:hidden;
-    line-height:1.7;
+    line-height:1.8;
+}
+
+/* Scroll height controller */
+.scroll-area{
+    height:500vh; /* Important for smooth frame scrolling */
 }
 
 /* Background Canvas */
@@ -28,10 +34,10 @@ body{
     width:100%;
     height:100%;
     z-index:-2;
-    opacity:0.18; /* watermark visibility */
+    opacity:0.15;
 }
 
-/* Dark overlay gradient for smooth transition */
+/* Dark overlay */
 .overlay{
     position:fixed;
     top:0;
@@ -40,19 +46,19 @@ body{
     height:100%;
     background:linear-gradient(
         to bottom,
-        rgba(0,8,20,0.95),
-        rgba(0,8,20,0.85),
-        rgba(0,8,20,0.95)
+        rgba(10,15,28,0.96),
+        rgba(10,15,28,0.85),
+        rgba(10,15,28,0.96)
     );
     z-index:-1;
 }
 
-/* Layout */
 .container{
     width:80%;
     max-width:1000px;
     margin:auto;
     padding:120px 0;
+    position:relative;
 }
 
 header{
@@ -61,64 +67,31 @@ header{
 
 header h1{
     font-size:52px;
-    letter-spacing:3px;
     color:#4cc9f0;
 }
 
 header p{
-    font-size:18px;
     color:#94a3b8;
     margin-top:10px;
 }
 
-/* Sections without boxes */
 section{
-    margin-bottom:70px;
+    margin-bottom:80px;
 }
 
 section h2{
-    font-size:28px;
-    margin-bottom:20px;
     color:#4cc9f0;
+    margin-bottom:20px;
 }
 
 ul{
-    padding-left:20px;
-}
-
-li{
-    margin-bottom:10px;
+    padding-left:22px;
 }
 
 footer{
-    margin-top:80px;
-    padding:40px 0;
+    margin-top:100px;
     color:#64748b;
-}
-
-/* Smooth fade-in effect */
-section, header {
-    opacity:0;
-    transform:translateY(40px);
-    animation:fadeUp 1s ease forwards;
-}
-
-section:nth-child(2){animation-delay:0.2s;}
-section:nth-child(3){animation-delay:0.4s;}
-section:nth-child(4){animation-delay:0.6s;}
-section:nth-child(5){animation-delay:0.8s;}
-
-@keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media(max-width:768px){
-    .container{
-        width:90%;
-    }
+    font-size:14px;
 }
 </style>
 </head>
@@ -127,6 +100,8 @@ section:nth-child(5){animation-delay:0.8s;}
 
 <canvas id="animationCanvas"></canvas>
 <div class="overlay"></div>
+
+<div class="scroll-area"></div>
 
 <div class="container">
 
@@ -140,8 +115,7 @@ section:nth-child(5){animation-delay:0.8s;}
     <p>
         Entry-level core engineer with strong technical fundamentals,
         practical exposure through academic projects, and a keen interest
-        in real-world engineering applications. Seeking an opportunity
-        to contribute and grow in a dynamic engineering environment.
+        in real-world engineering applications.
     </p>
 </section>
 
@@ -155,9 +129,9 @@ section:nth-child(5){animation-delay:0.8s;}
 <section>
     <h2>Education</h2>
     <ul>
-        <li>SSLC – Hindhu Nadar High School (2016-2021) | 100%</li>
-        <li>HSLC – Government Higher Secondary School (2021-2023) | 86.7%</li>
-        <li>B.E (ECE) – Government College of Engineering (2023-2027) | CGPA: 7.9/10</li>
+        <li>SSLC – Hindhu Nadar High School (2016–2021) | 100%</li>
+        <li>HSLC – Government Higher Secondary School (2021–2023) | 86.7%</li>
+        <li>B.E (ECE) – Government College of Engineering (2023–2027) | CGPA: 7.9 / 10</li>
     </ul>
 </section>
 
@@ -197,37 +171,47 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-const currentFrame = index =>
+const currentFrame = (index) =>
   `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
 
 const images = [];
-for(let i = 1; i <= frameCount; i++){
+let imagesLoaded = 0;
+
+/* Preload ALL frames */
+for (let i = 1; i <= frameCount; i++) {
     const img = new Image();
     img.src = currentFrame(i);
+    img.onload = () => {
+        imagesLoaded++;
+        if(imagesLoaded === frameCount){
+            renderFrame(0);
+        }
+    };
     images.push(img);
 }
 
-let targetFrame = 0;
-let currentFrameIndex = 0;
-
-function animate(){
-    currentFrameIndex += (targetFrame - currentFrameIndex) * 0.07;
-    const frame = Math.floor(currentFrameIndex);
-
-    if(images[frame]){
-        context.clearRect(0,0,canvas.width,canvas.height);
-        context.drawImage(images[frame],0,0,canvas.width,canvas.height);
-    }
-
-    requestAnimationFrame(animate);
+function renderFrame(index){
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.drawImage(images[index],0,0,canvas.width,canvas.height);
 }
-animate();
+
+let ticking = false;
 
 window.addEventListener("scroll", () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScroll;
-    targetFrame = scrollFraction * (frameCount - 1);
+    if(!ticking){
+        window.requestAnimationFrame(() => {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollTop / maxScroll;
+            const frameIndex = Math.min(
+                frameCount - 1,
+                Math.floor(scrollFraction * frameCount)
+            );
+            renderFrame(frameIndex);
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
 </script>
 
