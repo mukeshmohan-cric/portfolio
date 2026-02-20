@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mukesh M | Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #222;
+    overflow-x: hidden;
+}
+
+/* Canvas Background */
+#animationCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.08; /* Watermark transparency */
+}
+
+/* Main Container */
+.container {
+    width: 85%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 80px 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 42px;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    color: #444;
+}
+
+/* Sections */
+section {
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+section h2 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    border-left: 4px solid #1e3a8a;
+    padding-left: 10px;
+}
+
+/* Lists */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Contact */
+.contact p {
+    margin-bottom: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .container{
+        width: 92%;
+    }
+}
+</style>
+</head>
+<body>
+
+<canvas id="animationCanvas"></canvas>
+
+<div class="container">
+
+<header>
+    <h1>MUKESH M</h1>
+    <p>Entry-Level Core Engineer | Electronics & Communication Engineering</p>
+</header>
+
+<section>
+    <h2>Profile</h2>
+    <p>
+        Entry-level core engineer with strong technical fundamentals, practical
+        exposure through academic projects, and a keen interest in real-world
+        engineering applications. Seeking an opportunity to contribute and grow
+        in a dynamic engineering environment.
+    </p>
+</section>
+
+<section>
+    <h2>Contact Information</h2>
+    <div class="contact">
+        <p><strong>Phone:</strong> +91 6384863604</p>
+        <p><strong>Email:</strong> mukeshmohan9944@gmail.com</p>
+        <p><strong>Location:</strong> Pudur, Vilathikulam (Taluk), Thoothukudi</p>
+    </div>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <ul>
+        <li>
+            <strong>Hindhu Nadar High School – SSLC</strong><br>
+            2016-2021 | Percentage: 100%
+        </li>
+        <li>
+            <strong>Government Higher Secondary School – HSLC</strong><br>
+            2021-2023 | Percentage: 86.7%
+        </li>
+        <li>
+            <strong>Bachelor of Engineering (ECE)</strong><br>
+            Government College of Engineering College<br>
+            2023-2027 | CGPA: 7.9 / 10
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <ul>
+        <li>Strategic Planning</li>
+        <li>Problem Solving</li>
+        <li>Creative Thinking</li>
+        <li>Negotiation</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Languages</h2>
+    <ul>
+        <li>English</li>
+        <li>Tamil</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Activities</h2>
+    <p>Actively involved in academic and technical activities related to engineering and electronics domain.</p>
+</section>
+
+<section>
+    <h2>Reference</h2>
+    <p>Available upon request.</p>
+</section>
+
+<footer>
+    © 2026 Mukesh M | Professional Resume Portfolio
+</footer>
+
+</div>
+
+<script>
+const frameCount = 240;
+const canvas = document.getElementById('animationCanvas');
+const context = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const currentFrame = index => 
+  `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
+
+const images = [];
+let loadedImages = 0;
+
+for (let i = 1; i <= frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    img.onload = () => {
+        loadedImages++;
+        if (loadedImages === 1) {
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+    }
+    images.push(img);
+}
+
+window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollFraction = scrollTop / maxScroll;
+    const frameIndex = Math.min(
+        frameCount - 1,
+        Math.floor(scrollFraction * frameCount)
+    );
+
+    requestAnimationFrame(() => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(images[frameIndex], 0, 0, canvas.width, canvas.height);
+    });
+});
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
