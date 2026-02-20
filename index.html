@@ -6,103 +6,124 @@
 <title>Mukesh M | Portfolio</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family: 'Segoe UI', sans-serif;
 }
 
-body {
-    background: #f4f6f9;
-    color: #222;
-    overflow-x: hidden;
+body{
+    background:#0f172a;
+    color:#e2e8f0;
+    overflow-x:hidden;
 }
 
-/* Canvas Background */
-#animationCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.08; /* Watermark transparency */
+/* Background Canvas */
+#animationCanvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    opacity:0.12; /* Watermark transparency */
 }
 
-/* Main Container */
-.container {
-    width: 85%;
-    max-width: 1100px;
-    margin: auto;
-    padding: 80px 0;
+/* Overlay dark gradient for readability */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.85));
+    z-index:-1;
+}
+
+/* Container */
+.container{
+    width:85%;
+    max-width:1100px;
+    margin:auto;
+    padding:100px 0;
 }
 
 /* Header */
-header {
-    text-align: center;
-    margin-bottom: 50px;
+header{
+    text-align:center;
+    margin-bottom:60px;
 }
 
-header h1 {
-    font-size: 42px;
-    color: #1e3a8a;
-    margin-bottom: 10px;
+header h1{
+    font-size:48px;
+    color:#38bdf8;
+    letter-spacing:2px;
 }
 
-header p {
-    font-size: 18px;
-    color: #444;
+header p{
+    margin-top:10px;
+    font-size:18px;
+    color:#94a3b8;
 }
 
 /* Sections */
-section {
-    background: rgba(255,255,255,0.95);
-    padding: 40px;
-    margin-bottom: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+section{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:40px;
+    margin-bottom:40px;
+    border-radius:16px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    transition:0.4s;
 }
 
-section h2 {
-    color: #1e3a8a;
-    margin-bottom: 20px;
-    border-left: 4px solid #1e3a8a;
-    padding-left: 10px;
+section:hover{
+    transform:translateY(-5px);
+}
+
+section h2{
+    color:#38bdf8;
+    margin-bottom:20px;
+    border-left:4px solid #38bdf8;
+    padding-left:10px;
 }
 
 /* Lists */
-ul {
-    padding-left: 20px;
+ul{
+    padding-left:20px;
 }
 
-li {
-    margin-bottom: 10px;
+li{
+    margin-bottom:10px;
 }
 
 /* Contact */
-.contact p {
-    margin-bottom: 8px;
+.contact p{
+    margin-bottom:8px;
 }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #666;
+footer{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
 }
 
 /* Responsive */
 @media(max-width:768px){
     .container{
-        width: 92%;
+        width:92%;
     }
 }
 </style>
 </head>
+
 <body>
 
 <canvas id="animationCanvas"></canvas>
+<div class="overlay"></div>
 
 <div class="container">
 
@@ -122,7 +143,7 @@ footer {
 </section>
 
 <section>
-    <h2>Contact Information</h2>
+    <h2>Contact</h2>
     <div class="contact">
         <p><strong>Phone:</strong> +91 6384863604</p>
         <p><strong>Email:</strong> mukeshmohan9944@gmail.com</p>
@@ -133,19 +154,9 @@ footer {
 <section>
     <h2>Education</h2>
     <ul>
-        <li>
-            <strong>Hindhu Nadar High School – SSLC</strong><br>
-            2016-2021 | Percentage: 100%
-        </li>
-        <li>
-            <strong>Government Higher Secondary School – HSLC</strong><br>
-            2021-2023 | Percentage: 86.7%
-        </li>
-        <li>
-            <strong>Bachelor of Engineering (ECE)</strong><br>
-            Government College of Engineering College<br>
-            2023-2027 | CGPA: 7.9 / 10
-        </li>
+        <li><strong>SSLC</strong> – Hindhu Nadar High School (2016-2021) | 100%</li>
+        <li><strong>HSLC</strong> – Government Higher Secondary School (2021-2023) | 86.7%</li>
+        <li><strong>B.E (ECE)</strong> – Government College of Engineering (2023-2027) | CGPA: 7.9/10</li>
     </ul>
 </section>
 
@@ -167,66 +178,65 @@ footer {
     </ul>
 </section>
 
-<section>
-    <h2>Activities</h2>
-    <p>Actively involved in academic and technical activities related to engineering and electronics domain.</p>
-</section>
-
-<section>
-    <h2>Reference</h2>
-    <p>Available upon request.</p>
-</section>
-
 <footer>
-    © 2026 Mukesh M | Professional Resume Portfolio
+    © 2026 Mukesh M | Dark Portfolio
 </footer>
 
 </div>
 
 <script>
 const frameCount = 240;
-const canvas = document.getElementById('animationCanvas');
-const context = canvas.getContext('2d');
+const canvas = document.getElementById("animationCanvas");
+const context = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-const currentFrame = index => 
+const currentFrame = index =>
   `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
 
 const images = [];
-let loadedImages = 0;
+let imagesLoaded = 0;
 
-for (let i = 1; i <= frameCount; i++) {
+for(let i = 1; i <= frameCount; i++){
     const img = new Image();
     img.src = currentFrame(i);
     img.onload = () => {
-        loadedImages++;
-        if (loadedImages === 1) {
-            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        imagesLoaded++;
+        if(imagesLoaded === 1){
+            context.drawImage(img,0,0,canvas.width,canvas.height);
         }
     }
     images.push(img);
 }
 
-window.addEventListener('scroll', () => {
+let scrollFraction = 0;
+let targetFrame = 0;
+let currentFrameIndex = 0;
+
+/* Smooth animation loop */
+function animate(){
+    currentFrameIndex += (targetFrame - currentFrameIndex) * 0.08;
+    const frame = Math.floor(currentFrameIndex);
+
+    if(images[frame]){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.drawImage(images[frame],0,0,canvas.width,canvas.height);
+    }
+
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScroll;
-    const frameIndex = Math.min(
-        frameCount - 1,
-        Math.floor(scrollFraction * frameCount)
-    );
-
-    requestAnimationFrame(() => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(images[frameIndex], 0, 0, canvas.width, canvas.height);
-    });
-});
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    scrollFraction = scrollTop / maxScroll;
+    targetFrame = scrollFraction * (frameCount - 1);
 });
 </script>
 
