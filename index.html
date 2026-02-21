@@ -6,233 +6,225 @@
 <title>Mukesh M | Resume Portfolio</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
 
-body{
-    background: linear-gradient(to bottom, #0f172a, #020617);
-    color:#e5e7eb;
-    overflow-x:hidden;
-}
+    body {
+        background: #f4f6f9;
+        color: #1a1a1a;
+        overflow-x: hidden;
+    }
 
-/* ===== Background Canvas ===== */
-#animationCanvas{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-2;
-    pointer-events:none;
-}
+    /* Background Canvas */
+    #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.08; /* Watermark transparency */
+    }
 
-/* Dark overlay to control brightness */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.75);
-    z-index:-1;
-}
+    .container {
+        width: 85%;
+        max-width: 1100px;
+        margin: auto;
+        padding: 60px 0;
+    }
 
-/* ===== Layout ===== */
-.container{
-    width:85%;
-    max-width:1100px;
-    margin:auto;
-    padding:100px 0;
-}
+    header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
 
-section{
-    margin-bottom:80px;
-}
+    header h1 {
+        font-size: 48px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
 
-h1{
-    font-size:54px;
-    margin-bottom:20px;
-    color:#ffffff;
-}
+    header p {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #555;
+    }
 
-h2{
-    font-size:24px;
-    margin-bottom:15px;
-    color:#38bdf8;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
+    section {
+        margin-bottom: 60px;
+        background: rgba(255,255,255,0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
 
-p{
-    font-size:18px;
-    line-height:1.8;
-    color:#cbd5e1;
-}
+    h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
 
-.badge{
-    display:inline-block;
-    padding:8px 16px;
-    margin:8px 10px 0 0;
-    background:rgba(56,189,248,0.15);
-    border:1px solid rgba(56,189,248,0.4);
-    border-radius:20px;
-    font-size:14px;
-    color:#38bdf8;
-}
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
 
-.footer{
-    text-align:center;
-    padding:40px 0;
-    font-size:14px;
-    color:#94a3b8;
-}
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        color: #777;
+    }
+
+    @media(max-width: 768px){
+        .two-column {
+            grid-template-columns: 1fr;
+        }
+        header h1 {
+            font-size: 32px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<canvas id="animationCanvas"></canvas>
-<div class="overlay"></div>
+<canvas id="bg-canvas"></canvas>
 
 <div class="container">
 
-<section>
+<header>
     <h1>MUKESH M</h1>
+    <p>Entry-Level Core Engineer | Electronics & Communication</p>
+</header>
+
+<section>
+    <h2>Profile</h2>
     <p>
-        Entry-level core engineer with strong technical fundamentals, practical
-        exposure through academic projects, and a keen interest in real-world
-        engineering applications. Seeking an opportunity to contribute and grow in
-        a dynamic engineering environment.
+        Entry-level core engineer with strong technical fundamentals, practical exposure through academic projects,
+        and a keen interest in real-world engineering applications. Seeking an opportunity to contribute and grow
+        in a dynamic engineering environment.
     </p>
 </section>
 
-<section>
-    <h2>Contact</h2>
-    <p><strong>Phone:</strong> +91 6384863604</p>
-    <p><strong>Email:</strong> mukeshmohan9944@gmail.com</p>
-    <p><strong>Location:</strong> Pudur, Vilathikulam (Taluk), Thoothukudi</p>
-</section>
+<section class="two-column">
+    <div>
+        <h2>Contact</h2>
+        <ul>
+            <li><strong>Phone:</strong> +91 6384863604</li>
+            <li><strong>Email:</strong> mukeshmohan9944@gmail.com</li>
+            <li><strong>Location:</strong> Pudur, Vilathikulam (Taluk), Thoothukudi</li>
+        </ul>
+    </div>
 
-<section>
-    <h2>Education</h2>
-    <p><strong>Hindhu Nadar High School – SSLC (2016–2021)</strong><br>
-    Percentage: 100%</p><br>
-
-    <p><strong>Government Higher Secondary School – HSLC (2021–2023)</strong><br>
-    Percentage: 86.7%</p><br>
-
-    <p><strong>Bachelor of Engineering (ECE) – Government College Of Engineering College (2023–2027)</strong><br>
-    CGPA: 7.9 / 10</p>
+    <div>
+        <h2>Languages</h2>
+        <ul>
+            <li>English</li>
+            <li>Tamil</li>
+        </ul>
+    </div>
 </section>
 
 <section>
     <h2>Skills</h2>
-    <span class="badge">Strategic Planning</span>
-    <span class="badge">Problem Solving</span>
-    <span class="badge">Creative Thinking</span>
-    <span class="badge">Negotiation</span>
+    <ul>
+        <li>Strategic Planning</li>
+        <li>Problem Solving</li>
+        <li>Creative Thinking</li>
+        <li>Negotiation</li>
+    </ul>
 </section>
 
 <section>
-    <h2>Languages</h2>
-    <p>English</p>
-    <p>Tamil</p>
+    <h2>Education</h2>
+    <ul>
+        <li>
+            <strong>Hindhu Nadar High School – SSLC (2016–2021)</strong><br>
+            Percentage: 100%
+        </li>
+        <br>
+        <li>
+            <strong>Government Higher Secondary School – HSLC (2021–2023)</strong><br>
+            Percentage: 86.7%
+        </li>
+        <br>
+        <li>
+            <strong>Bachelor of Engineering (ECE) – Government College of Engineering (2023–2027)</strong><br>
+            CGPA: 7.9 / 10
+        </li>
+    </ul>
 </section>
 
 <section>
     <h2>Activities</h2>
-    <p>🎓 Academic Project Participation & Engineering Activities</p>
+    <p>Actively involved in academic engineering projects and technical learning initiatives.</p>
 </section>
 
-<section>
-    <h2>Reference</h2>
-    <p>Available upon request.</p>
-</section>
-
-<div class="footer">
+<footer>
     © 2026 Mukesh M | Resume Portfolio
-</div>
+</footer>
 
 </div>
 
 <script>
 const frameCount = 240;
-const canvas = document.getElementById("animationCanvas");
-const context = canvas.getContext("2d");
+const canvas = document.getElementById('bg-canvas');
+const context = canvas.getContext('2d');
 
-let images = [];
-let imagesLoaded = 0;
-let currentFrameIndex = 0;
-let targetFrameIndex = 0;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function resizeCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+const currentFrame = index => 
+  `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
 
-const currentFrame = index =>
-  `frames/ezgif-frame-${String(index).padStart(3,'0')}.jpg`;
+const images = [];
+const imageSeq = { frame: 1 };
 
-// Preload all frames
-for(let i = 1; i <= frameCount; i++){
+for (let i = 1; i <= frameCount; i++) {
     const img = new Image();
     img.src = currentFrame(i);
-    img.onload = () => {
-        imagesLoaded++;
-        if(imagesLoaded === frameCount){
-            render();
-        }
-    };
     images.push(img);
 }
 
-// Smooth animation loop
-function render(){
-
-    currentFrameIndex += (targetFrameIndex - currentFrameIndex) * 0.08;
-    const frameIndex = Math.floor(currentFrameIndex);
-
-    if(images[frameIndex]){
-        const img = images[frameIndex];
-
-        context.clearRect(0,0,canvas.width,canvas.height);
-
-        const scale = Math.max(
-            canvas.width / img.width,
-            canvas.height / img.height
-        );
-
-        const x = (canvas.width / 2) - (img.width / 2) * scale;
-        const y = (canvas.height / 2) - (img.height / 2) * scale;
-
-        context.globalAlpha = 0.25;  // Watermark strength
-
-        context.drawImage(
-            img,
-            0,0,img.width,img.height,
-            x,y,
-            img.width*scale,
-            img.height*scale
-        );
-
-        context.globalAlpha = 1;
-    }
-
-    requestAnimationFrame(render);
+function render() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(images[imageSeq.frame - 1], 0, 0, canvas.width, canvas.height);
 }
 
-// Update target frame on scroll
-window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
+window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const scrollFraction = scrollTop / maxScroll;
-    targetFrameIndex = scrollFraction * (frameCount - 1);
+    const frameIndex = Math.min(
+        frameCount - 1,
+        Math.ceil(scrollFraction * frameCount)
+    );
+    imageSeq.frame = frameIndex;
+    requestAnimationFrame(render);
+});
+
+images[0].onload = render;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
 });
 </script>
 
