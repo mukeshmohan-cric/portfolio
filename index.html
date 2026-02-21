@@ -1,170 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mukesh M | Resume Portfolio</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-body{
-    background: linear-gradient(to bottom, #0f172a, #020617);
-    color:#e5e7eb;
-    overflow-x:hidden;
-}
-
-/* ===== Background Canvas ===== */
-#animationCanvas{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-    opacity:0.18;   /* Increased visibility */
-    pointer-events:none;
-}
-
-/* Optional dark overlay for smooth blend */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.55);
-    z-index:-1;
-}
-
-/* ===== Layout ===== */
-.container{
-    width:85%;
-    max-width:1100px;
-    margin:auto;
-    padding:100px 0;
-}
-
-section{
-    margin-bottom:80px;
-}
-
-h1{
-    font-size:54px;
-    margin-bottom:20px;
-    color:#ffffff;
-}
-
-h2{
-    font-size:24px;
-    margin-bottom:15px;
-    color:#38bdf8;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-p{
-    font-size:18px;
-    line-height:1.8;
-    color:#cbd5e1;
-}
-
-.badge{
-    display:inline-block;
-    padding:8px 16px;
-    margin:8px 10px 0 0;
-    background:rgba(56,189,248,0.15);
-    border:1px solid rgba(56,189,248,0.4);
-    border-radius:20px;
-    font-size:14px;
-    color:#38bdf8;
-}
-
-.footer{
-    text-align:center;
-    padding:40px 0;
-    font-size:14px;
-    color:#94a3b8;
-}
-</style>
-</head>
-
-<body>
-
-<canvas id="animationCanvas"></canvas>
-<div class="overlay"></div>
-
-<div class="container">
-
-<section>
-    <h1>MUKESH M</h1>
-    <p>
-        Entry-level core engineer with strong technical fundamentals, practical
-        exposure through academic projects, and a keen interest in real-world
-        engineering applications. Seeking an opportunity to contribute and grow in
-        a dynamic engineering environment.
-    </p>
-</section>
-
-<section>
-    <h2>Contact</h2>
-    <p><strong>Phone:</strong> +91 6384863604</p>
-    <p><strong>Email:</strong> mukeshmohan9944@gmail.com</p>
-    <p><strong>Location:</strong> Pudur, Vilathikulam (Taluk), Thoothukudi</p>
-</section>
-
-<section>
-    <h2>Education</h2>
-    <p><strong>Hindhu Nadar High School – SSLC (2016–2021)</strong><br>
-    Percentage: 100%</p><br>
-
-    <p><strong>Government Higher Secondary School – HSLC (2021–2023)</strong><br>
-    Percentage: 86.7%</p><br>
-
-    <p><strong>Bachelor of Engineering (ECE) – Government College Of Engineering College (2023–2027)</strong><br>
-    CGPA: 7.9 / 10</p>
-</section>
-
-<section>
-    <h2>Skills</h2>
-    <span class="badge">Strategic Planning</span>
-    <span class="badge">Problem Solving</span>
-    <span class="badge">Creative Thinking</span>
-    <span class="badge">Negotiation</span>
-</section>
-
-<section>
-    <h2>Languages</h2>
-    <p>English</p>
-    <p>Tamil</p>
-</section>
-
-<section>
-    <h2>Activities</h2>
-    <p>🎓 Academic Project Participation & Engineering Activities</p>
-</section>
-
-<section>
-    <h2>Reference</h2>
-    <p>Available upon request.</p>
-</section>
-
-<div class="footer">
-    © 2026 Mukesh M | Resume Portfolio
-</div>
-
-</div>
-
 <script>
 const frameCount = 240;
 const canvas = document.getElementById("animationCanvas");
 const context = canvas.getContext("2d");
 
+let images = [];
+let imagesLoaded = 0;
+let currentFrameIndex = 0;
+let targetFrameIndex = 0;
+
+// Resize canvas
 function resizeCanvas(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -172,55 +16,61 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
+// Frame path
 const currentFrame = index =>
-    `frames/ezgif-frame-${String(index).padStart(3,'0')}.jpg`;
+  `frames/ezgif-frame-${String(index).padStart(3,'0')}.jpg`;
 
-const images = [];
-let loadedImages = 0;
-
-for(let i=1;i<=frameCount;i++){
+// Preload all frames
+for(let i = 1; i <= frameCount; i++){
     const img = new Image();
     img.src = currentFrame(i);
     img.onload = () => {
-        loadedImages++;
-        if(loadedImages === frameCount){
-            render();
+        imagesLoaded++;
+        if(imagesLoaded === frameCount){
+            render(); // start after all loaded
         }
-    }
+    };
     images.push(img);
 }
 
+// Smooth render loop
 function render(){
+    // Smooth interpolation (easing)
+    currentFrameIndex += (targetFrameIndex - currentFrameIndex) * 0.08;
+
+    const frameIndex = Math.floor(currentFrameIndex);
+
+    if(images[frameIndex]){
+        const img = images[frameIndex];
+
+        context.clearRect(0,0,canvas.width,canvas.height);
+
+        const scale = Math.max(
+            canvas.width / img.width,
+            canvas.height / img.height
+        );
+
+        const x = (canvas.width / 2) - (img.width / 2) * scale;
+        const y = (canvas.height / 2) - (img.height / 2) * scale;
+
+        context.drawImage(
+            img,
+            0,0,img.width,img.height,
+            x,y,
+            img.width*scale,
+            img.height*scale
+        );
+    }
+
+    requestAnimationFrame(render);
+}
+
+// Update target frame on scroll
+window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     const maxScroll = document.body.scrollHeight - window.innerHeight;
     const scrollFraction = scrollTop / maxScroll;
-    const frameIndex = Math.min(
-        frameCount - 1,
-        Math.floor(scrollFraction * frameCount)
-    );
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    const img = images[frameIndex];
-    const scale = Math.max(
-        canvas.width / img.width,
-        canvas.height / img.height
-    );
-
-    const x = (canvas.width / 2) - (img.width / 2) * scale;
-    const y = (canvas.height / 2) - (img.height / 2) * scale;
-
-    context.drawImage(
-        img,
-        0,0,img.width,img.height,
-        x,y,
-        img.width*scale,
-        img.height*scale
-    );
-}
-
-window.addEventListener("scroll", render);
+    targetFrameIndex = scrollFraction * (frameCount - 1);
+});
 </script>
-
-</body>
-</html>
