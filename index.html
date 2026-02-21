@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mukesh M | Portfolio</title>
+<title>Mukesh M | Resume Portfolio</title>
 
 <style>
 *{
@@ -15,151 +14,192 @@
 }
 
 body{
-    background:#0a0f1c;
-    color:#e6edf3;
+    background:#f4f6f9;
     overflow-x:hidden;
-    line-height:1.8;
+    color:#1f2937;
 }
 
-/* Scroll height controller */
-.scroll-area{
-    height:500vh; /* Important for smooth frame scrolling */
-}
-
-/* Background Canvas */
+/* ===== Canvas Background ===== */
 #animationCanvas{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    z-index:-2;
-    opacity:0.15;
-}
-
-/* Dark overlay */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:linear-gradient(
-        to bottom,
-        rgba(10,15,28,0.96),
-        rgba(10,15,28,0.85),
-        rgba(10,15,28,0.96)
-    );
     z-index:-1;
+    opacity:0.08; /* watermark transparency */
+    pointer-events:none;
 }
 
+/* ===== Main Content ===== */
 .container{
-    width:80%;
-    max-width:1000px;
+    width:85%;
+    max-width:1100px;
     margin:auto;
-    padding:120px 0;
-    position:relative;
-}
-
-header{
-    margin-bottom:80px;
-}
-
-header h1{
-    font-size:52px;
-    color:#4cc9f0;
-}
-
-header p{
-    color:#94a3b8;
-    margin-top:10px;
+    padding:60px 0;
 }
 
 section{
-    margin-bottom:80px;
+    margin-bottom:70px;
 }
 
-section h2{
-    color:#4cc9f0;
+h1{
+    font-size:48px;
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+h2{
+    font-size:28px;
     margin-bottom:20px;
+    border-left:5px solid #2563eb;
+    padding-left:10px;
+    color:#2563eb;
+}
+
+.card{
+    background:rgba(255,255,255,0.92);
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+    backdrop-filter: blur(6px);
 }
 
 ul{
-    padding-left:22px;
+    padding-left:20px;
 }
 
-footer{
-    margin-top:100px;
-    color:#64748b;
+li{
+    margin-bottom:8px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.badge{
+    background:#2563eb;
+    color:white;
+    padding:8px 12px;
+    border-radius:20px;
+    display:inline-block;
+    margin:5px 5px 0 0;
     font-size:14px;
+}
+
+.footer{
+    text-align:center;
+    padding:40px 0;
+    font-size:14px;
+    color:#6b7280;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Animation Canvas -->
 <canvas id="animationCanvas"></canvas>
-<div class="overlay"></div>
-
-<div class="scroll-area"></div>
 
 <div class="container">
 
-<header>
-    <h1>MUKESH M</h1>
-    <p>Entry-Level Core Engineer | Electronics & Communication Engineering</p>
-</header>
-
+<!-- HEADER -->
 <section>
-    <h2>Profile</h2>
-    <p>
-        Entry-level core engineer with strong technical fundamentals,
-        practical exposure through academic projects, and a keen interest
-        in real-world engineering applications.
-    </p>
+    <h1>MUKESH M</h1>
+    <div class="card">
+        <p><strong>Profile:</strong><br>
+        Entry-level core engineer with strong technical fundamentals, practical
+        exposure through academic projects, and a keen interest in real-world
+        engineering applications. Seeking an opportunity to contribute and grow in
+        a dynamic engineering environment.
+        </p>
+    </div>
 </section>
 
+<!-- CONTACT -->
 <section>
     <h2>Contact</h2>
-    <p><strong>Phone:</strong> +91 6384863604</p>
-    <p><strong>Email:</strong> mukeshmohan9944@gmail.com</p>
-    <p><strong>Location:</strong> Pudur, Vilathikulam (Taluk), Thoothukudi</p>
+    <div class="card contact-grid">
+        <div><strong>Phone:</strong><br> +91 6384863604</div>
+        <div><strong>Email:</strong><br> mukeshmohan9944@gmail.com</div>
+        <div><strong>Location:</strong><br> Pudur, Vilathikulam (Taluk), Thoothukudi</div>
+    </div>
 </section>
 
+<!-- EDUCATION -->
 <section>
     <h2>Education</h2>
-    <ul>
-        <li>SSLC – Hindhu Nadar High School (2016–2021) | 100%</li>
-        <li>HSLC – Government Higher Secondary School (2021–2023) | 86.7%</li>
-        <li>B.E (ECE) – Government College of Engineering (2023–2027) | CGPA: 7.9 / 10</li>
-    </ul>
+
+    <div class="card">
+        <strong>Hindhu Nadar High School – SSLC (2016–2021)</strong><br>
+        Percentage: 100%
+    </div>
+
+    <div class="card">
+        <strong>Government Higher Secondary School – HSLC (2021–2023)</strong><br>
+        Percentage: 86.7%
+    </div>
+
+    <div class="card">
+        <strong>Bachelor of Engineering (ECE) – Government College Of Engineering College (2023–2027)</strong><br>
+        CGPA: 7.9 / 10
+    </div>
 </section>
 
+<!-- SKILLS -->
 <section>
     <h2>Skills</h2>
-    <ul>
-        <li>Strategic Planning</li>
-        <li>Problem Solving</li>
-        <li>Creative Thinking</li>
-        <li>Negotiation</li>
-    </ul>
+    <div class="card skills-grid">
+        <span class="badge">Strategic Planning</span>
+        <span class="badge">Problem Solving</span>
+        <span class="badge">Creative Thinking</span>
+        <span class="badge">Negotiation</span>
+    </div>
 </section>
 
+<!-- LANGUAGES -->
 <section>
     <h2>Languages</h2>
-    <ul>
-        <li>English</li>
-        <li>Tamil</li>
-    </ul>
+    <div class="card">
+        English<br>
+        Tamil
+    </div>
 </section>
 
-<footer>
-    © 2026 Mukesh M | Portfolio
-</footer>
+<!-- ACTIVITY -->
+<section>
+    <h2>Activities</h2>
+    <div class="card">
+        🎓 Academic Project Participation & Engineering Activities
+    </div>
+</section>
+
+<!-- REFERENCE -->
+<section>
+    <h2>Reference</h2>
+    <div class="card">
+        Available upon request.
+    </div>
+</section>
+
+<div class="footer">
+    © 2026 Mukesh M | Resume Portfolio
+</div>
 
 </div>
 
+<!-- ===== SCROLL FRAME ANIMATION SCRIPT ===== -->
 <script>
+
 const frameCount = 240;
 const canvas = document.getElementById("animationCanvas");
 const context = canvas.getContext("2d");
@@ -171,48 +211,55 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-const currentFrame = (index) =>
-  `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
+const currentFrame = index => 
+    `frames/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
 
 const images = [];
-let imagesLoaded = 0;
+let loadedImages = 0;
 
-/* Preload ALL frames */
-for (let i = 1; i <= frameCount; i++) {
+for(let i=1;i<=frameCount;i++){
     const img = new Image();
     img.src = currentFrame(i);
     img.onload = () => {
-        imagesLoaded++;
-        if(imagesLoaded === frameCount){
-            renderFrame(0);
+        loadedImages++;
+        if(loadedImages === frameCount){
+            render();
         }
-    };
+    }
     images.push(img);
 }
 
-function renderFrame(index){
-    context.clearRect(0,0,canvas.width,canvas.height);
-    context.drawImage(images[index],0,0,canvas.width,canvas.height);
+function render(){
+    const scrollTop = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const scrollFraction = scrollTop / maxScroll;
+    const frameIndex = Math.min(
+        frameCount - 1,
+        Math.floor(scrollFraction * frameCount)
+    );
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    const img = images[frameIndex];
+    const scale = Math.max(
+        canvas.width / img.width,
+        canvas.height / img.height
+    );
+
+    const x = (canvas.width / 2) - (img.width / 2) * scale;
+    const y = (canvas.height / 2) - (img.height / 2) * scale;
+
+    context.drawImage(
+        img,
+        0, 0, img.width, img.height,
+        x, y,
+        img.width * scale,
+        img.height * scale
+    );
 }
 
-let ticking = false;
+window.addEventListener("scroll", render);
 
-window.addEventListener("scroll", () => {
-    if(!ticking){
-        window.requestAnimationFrame(() => {
-            const scrollTop = window.scrollY;
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const scrollFraction = scrollTop / maxScroll;
-            const frameIndex = Math.min(
-                frameCount - 1,
-                Math.floor(scrollFraction * frameCount)
-            );
-            renderFrame(frameIndex);
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
 </script>
 
 </body>
